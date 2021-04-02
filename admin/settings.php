@@ -63,11 +63,9 @@ if(!isset($_SESSION["user"]))
                         <a class="active-menu" href="settings.php"><i class="fa fa-dashboard"></i>Room Status</a>
                     </li>
 					<li>
-                        <a  href="room.php"><i class="fa fa-plus-circle"></i>Add Room</a>
+                        <a  href="index_room.php"><i class="fa fa-plus-circle"></i>Add Room</a>
                     </li>
-                    <li>
-                        <a   href="roomdel.php"><i class="fa fa-pencil-square-o"></i> Delete Room</a>
-                    </li>
+               
 					
 
                     
@@ -155,6 +153,38 @@ if(!isset($_SESSION["user"]))
 															<h3>".$row['bedding']."</h3>
 														</div>
 														<div class='panel-footer back-footer-red'>
+															".$row['type']."
+
+														</div>
+													</div>
+												</div>";
+											
+											}
+                                            else if($id =="Junior Suite")
+											{
+												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
+													<div class='panel panel-primary text-center no-boder bg-color-red'>
+														<div class='panel-body'>
+															<i class='fa fa-users fa-5x'></i>
+															<h3>".$row['bedding']."</h3>
+														</div>
+														<div class='panel-footer back-footer-red'>
+															".$row['type']."
+
+														</div>
+													</div>
+												</div>";
+											
+											}
+                                            else if($id =="Executive Suite")
+											{
+												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
+													<div class='panel panel-primary text-center no-boder bg-color-brown'>
+														<div class='panel-body'>
+															<i class='fa fa-users fa-5x'></i>
+															<h3>".$row['bedding']."</h3>
+														</div>
+														<div class='panel-footer back-footer-brown'>
 															".$row['type']."
 
 														</div>

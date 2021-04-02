@@ -27,7 +27,7 @@ if(!isset($_SESSION["user"]))
 					$lname = $row['LName'];
 					$email = $row['Email'];
 					$nat = $row['National'];
-					$country = $row['Country'];
+					
 					$Phone = $row['Phone'];
 					$troom = $row['TRoom'];
 					$nroom = $row['NRoom'];
@@ -182,11 +182,7 @@ if(!isset($_SESSION["user"]))
                                             <th><?php echo $nat; ?></th>
                                             
                                         </tr>
-										<tr>
-                                            <th>Country </th>
-                                            <th><?php echo $country;  ?></th>
-                                            
-                                        </tr>
+										
 										<tr>
                                             <th>Phone No </th>
                                             <th><?php echo $Phone; ?></th>
@@ -249,12 +245,12 @@ if(!isset($_SESSION["user"]))
 														<label>Select the Conformation</label>
 														<select name="conf"class="form-control">
 															<option value selected>	</option>
-															<option value="Conform">Conform</option>
+															<option value="confirm">Confirm</option>
 															
 															
 														</select>
 										 </div>
-							<input type="submit" name="co" value="Conform" class="btn btn-success">
+							<input type="submit" name="co" value="Confirm" class="btn btn-info">
 							
 							</form>
                         </div>
@@ -269,6 +265,8 @@ if(!isset($_SESSION["user"]))
 						$gh = 0;
 						$sr = 0;
 						$dr = 0;
+						$js = 0;
+						$es=0;
 						while($rrow=mysqli_fetch_array($rre))
 						{
 							$r = $r + 1;
@@ -291,6 +289,14 @@ if(!isset($_SESSION["user"]))
 							{
 								$dr = $dr + 1;
 							}
+							if($s=="Junior Suite" )
+							{
+								$js = $js + 1;
+							}
+							if($s=="Executive Suite" )
+							{
+								$es = $es + 1;
+							}
 							
 						
 						}
@@ -304,6 +310,9 @@ if(!isset($_SESSION["user"]))
 						$cgh = 0;
 						$csr = 0;
 						$cdr = 0;
+						$cjs =0;
+						$ces =0;
+
 						while($crow=mysqli_fetch_array($cre))
 						{
 							$cr = $cr + 1;
@@ -325,6 +334,14 @@ if(!isset($_SESSION["user"]))
 							if($cs=="Deluxe Room" )
 							{
 								$cdr = $cdr + 1;
+							}
+							if($cs=="Junior Suite" )
+							{
+								$cjs = $cjs + 1;
+							}
+							if($cs=="Executive Suite" )
+							{
+								$ces = $ces + 1;
 							}
 							
 						
@@ -397,16 +414,46 @@ if(!isset($_SESSION["user"]))
 								?> </button></td> 
 							</tr>
 							<tr>
-								<td><b>Total Rooms	</b> </td>
-								<td> <button type="button" class="btn btn-danger btn-circle"><?php 
+							<tr>
+								<td><b>Junior Suite</b>	 </td>
+								<td><button type="button" class="btn btn-primary btn-circle"><?php 
 								
-								$f5 =$r-$cr; 
+								$f5 =$js - $cjs; 
 								if($f5 <=0 )
 									{	$f5 = "NO";
 										echo $f5;
 									}
 									else{
 											echo $f5;
+									}
+								?> </button></td> 
+							</tr>
+							<tr>
+							<tr>
+								<td><b>Executive Suite</b>	 </td>
+								<td><button type="button" class="btn btn-primary btn-circle"><?php 
+								
+								$f6 =$es - $ces; 
+								if($f6 <=0 )
+									{	$f6 = "NO";
+										echo $f6;
+									}
+									else{
+											echo $f6;
+									}
+								?> </button></td> 
+							</tr>
+							<tr>
+								<td><b>Total Rooms	</b> </td>
+								<td> <button type="button" class="btn btn-danger btn-circle"><?php 
+								
+								$f7 =$r-$cr; 
+								if($f7 <=0 )
+									{	$f7 = "NO";
+										echo $f7;
+									}
+									else{
+											echo $f7;
 									}
 								 ?> </button></td> 
 							</tr>
@@ -462,41 +509,52 @@ if(!isset($_SESSION["user"]))
 							
 							 
 							
-							if($st=="Conform")
-							{
+								if($st=="confirm")
+						{
 									$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
 									
-								if($f1=="NO" )
-								{
-									echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
-								}
-								else if($f2 =="NO")
-									{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Guest House')</script>";
+								// if($f1=="NO" )
+								// {
+								// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+								// }
+								// else if($f2 =="NO")
+								// 	{
+								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Guest House')</script>";
 										
-									}
-									else if ($f3 == "NO")
-									{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
-									}
-										else if($f4=="NO")
-										{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room')</script>";
-										}
+								// 	}
+								// 	else if ($f3 == "NO")
+								// 	{
+								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
+								// 	}
+								// 		else if($f4=="NO")
+								// 		{
+								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room')</script>";
+								// 	}
 										
-										else if( mysqli_query($con,$urb))
+										
+									 if( mysqli_query($con,$urb))
 											{	
 												//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
 												//echo "<script type='text/javascript'> window.location='home.php'</script>";
 												 $type_of_room = 0;       
 														if($troom=="Superior Room")
 														{
-															$type_of_room = 320;
+															$type_of_room = 350;
+														
+														}
+														if($troom=="Junior Suite")
+														{
+															$type_of_room = 450;
+														
+														}
+														if($troom=="Executive Suite")
+														{
+															$type_of_room = 500;
 														
 														}
 														else if($troom=="Deluxe Room")
 														{
-															$type_of_room = 220;
+															$type_of_room = 250;
 														}
 														else if($troom=="Guest House")
 														{
@@ -526,11 +584,14 @@ if(!isset($_SESSION["user"]))
 														{
 															$type_of_bed = $type_of_room * 4/100;
 														}
-														else if($bed=="None")
+														else if($bed=="Queen Size")
 														{
-															$type_of_bed = $type_of_room * 0/100;
+															$type_of_bed = $type_of_room * 5/100;
 														}
-														
+														else if($bed=="King Size")
+														{
+															$type_of_bed = $type_of_room * 7/100;
+														}
 														
 														if($meal=="Room only")
 														{
@@ -563,7 +624,7 @@ if(!isset($_SESSION["user"]))
 															$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 															if(mysqli_query($con,$rpsql))
 															{
-															echo "<script type='text/javascript'> alert('Booking Conform')</script>";
+															echo "<script type='text/javascript'> alert('Booking Confirm')</script>";
 															echo "<script type='text/javascript'> window.location='roombook.php'</script>";
 															}
 															
@@ -571,11 +632,12 @@ if(!isset($_SESSION["user"]))
 														}
 												
 											}
-									
+										}
                                         
 							}	
 					
-						}
+						
+					
 					
 									
 									
