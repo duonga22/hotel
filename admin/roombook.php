@@ -271,7 +271,7 @@ if(!isset($_SESSION["user"]))
 						{
 							$r = $r + 1;
 							$s = $rrow['type'];
-							$p = $rrow['place'];
+						
 							if($s=="Superior Room" )
 							{
 								$sc = $sc+ 1;
@@ -503,37 +503,24 @@ if(!isset($_SESSION["user"]))
 </html>
 
 <?php
+			
+
 						if(isset($_POST['co']))
 						{	
 							$st = $_POST['conf'];
-							
-							 
+
 							
 								if($st=="confirm")
 						{
 									$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
 									
-								// if($f1=="NO" )
-								// {
-								// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
-								// }
-								// else if($f2 =="NO")
-								// 	{
-								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Guest House')</script>";
-										
-								// 	}
-								// 	else if ($f3 == "NO")
-								// 	{
-								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
-								// 	}
-								// 		else if($f4=="NO")
-								// 		{
-								// 		echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room')</script>";
-								// 	}
+								
 										
 										
 									 if( mysqli_query($con,$urb))
 											{	
+
+											
 												//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
 												//echo "<script type='text/javascript'> window.location='home.php'</script>";
 												 $type_of_room = 0;       
@@ -621,7 +608,7 @@ if(!isset($_SESSION["user"]))
 														
 														if(mysqli_query($con,$psql))
 														{	$notfree="NotFree";
-															$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+															$rpsql = "UPDATE `room` SET ,`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 															if(mysqli_query($con,$rpsql))
 															{
 															echo "<script type='text/javascript'> alert('Booking Confirm')</script>";

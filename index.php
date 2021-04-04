@@ -617,6 +617,8 @@ include('db.php');
                                     <tbody>
                                         
 									<?php
+
+										
 										include ('db.php');
 										$sql="select * from payment";
 										$re = mysqli_query($con,$sql);

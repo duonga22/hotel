@@ -153,7 +153,7 @@ if(!isset($_SESSION["user"]))
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Stt</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                           
@@ -289,68 +289,10 @@ if(!isset($_SESSION["user"]))
 								}
 						
 								?>
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
-											<button class="btn btn-primary" type="button">
-												 Followers  <span class="badge"><?php echo $f ; ?></span>
-											</button>
-											</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-											<th>Follow Start</th>
-                                            <th>Permission status</th>
-                                            
-											
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-									<?php
-									$csql = "select * from contact";
-									$cre = mysqli_query($con,$csql);
-									while($crow=mysqli_fetch_array($cre) )
-									{	
-										
-											echo"<tr>
-												<th>".$crow['id']."</th>
-												<th>".$crow['fullname']."</th>
-												<th>".$crow['email']." </th>
-												<th>".$crow['cdate']." </th>
-												<th>".$crow['approval']."</th>
-												</tr>";
-										
-									
-									}
-									?>
-                                        
-                                    </tbody>
-                                </table>
-								<a href="messages.php" class="btn btn-primary">More Action</a>
-                            </div>
-                        </div>
-                    </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-			
+                              
+			<?php
+                    error_reporting(0);
+            ?>
 				<!-- DEOMO-->
 				<div class='panel-body'>
                             <button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
