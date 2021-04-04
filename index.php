@@ -85,6 +85,7 @@ include('db.php');
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
 							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
 							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
+							<li class="menu__item"><a href="#booked" class="menu__link scroll">Booked List</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -205,6 +206,7 @@ include('db.php');
 		}
 
 ?>
+
 <!-- //Modal1 -->
 <div id="availability-agileits">
 <div class="col-md-12 book-form-left-w3layouts">
@@ -579,6 +581,109 @@ include('db.php');
 		</div>
 	</div>
 	 <!--// rooms & rates -->
+
+
+
+	 <div class="container" id="booked"> 
+
+				 
+				 
+            <div class="row">
+			<h3 class="title-w3-agileits title-black-wthree">Booked List</h3>
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+											<th>Room type</th>
+                                            <th>Bed Type</th>
+                                            <th>Check in</th>
+											<th>Check out</th>
+											<th>No of Room</th>
+											<th>Meal Type</th>
+											
+                                            <th>Room Rent</th>
+											<th>Bed Rent</th>
+											<th>Meals </th>
+											<th>Gr.Total</th>
+											<th>Payment</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+									<?php
+										include ('db.php');
+										$sql="select * from payment";
+										$re = mysqli_query($con,$sql);
+										while($row = mysqli_fetch_array($re))
+										{
+										
+											$id = $row['id'];
+											
+											if($id % 2 ==1 )
+											{
+												echo"<tr class='gradeC'>
+													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
+													<td>".$row['troom']."</td>
+													<td>".$row['tbed']."</td>
+													<td>".$row['cin']."</td>
+													<td>".$row['cout']."</td>
+													<td>".$row['nroom']."</td>
+													<td>".$row['meal']."</td>
+													
+													<td>".$row['ttot']."</td>
+													<td>".$row['mepr']."</td>
+													<td>".$row['btot']."</td>
+													<td>".$row['fintot']."</td>
+													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													</tr>";
+											}
+											else
+											{
+												echo"<tr class='gradeU'>
+													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
+													<td>".$row['troom']."</td>
+													<td>".$row['tbed']."</td>
+													<td>".$row['cin']."</td>
+													<td>".$row['cout']."</td>
+													<td>".$row['nroom']."</td>
+													<td>".$row['meal']."</td>
+													
+													<td>".$row['ttot']."</td>
+													<td>".$row['mepr']."</td>
+													<td>".$row['btot']."</td>
+													<td>".$row['fintot']."</td>
+													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													</tr>";
+											
+											}
+										
+										}
+										
+									?>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+            
+                </div>
+               
+           
+             <!-- /. PAGE INNER  -->
+      
+
   <!-- visitors -->
 	<div class="w3l-visitors-agile" >
 		<div class="container">

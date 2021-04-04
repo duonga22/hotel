@@ -61,12 +61,6 @@ INSERT INTO `login` (`id`, `usname`, `pass`) VALUES
 -- Table structure for table `newsletterlog`
 --
 
-CREATE TABLE IF NOT EXISTS `newsletterlog` (
-`id` int(10) unsigned NOT NULL,
-  `title` varchar(52) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `news` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +96,10 @@ CREATE TABLE IF NOT EXISTS `room` (
 `id` int(10) unsigned NOT NULL,
   `type` varchar(15) DEFAULT NULL,
   `bedding` varchar(10) DEFAULT NULL,
-  `place` varchar(10) DEFAULT NULL,
+  `price` int DEFAULT NULL,
+   `image` text DEFAULT NULL,
+    `description` text DEFAULT NULL,
+
   `cusid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
@@ -110,22 +107,7 @@ CREATE TABLE IF NOT EXISTS `room` (
 -- Dumping data for table `room`
 --
 
-INSERT INTO `room` (`id`, `type`, `bedding`, `place`, `cusid`) VALUES
-(1, 'Superior Room', 'Single', 'Free', NULL),
-(2, 'Superior Room', 'Double', 'Free', NULL),
-(3, 'Superior Room', 'Triple', 'Free', NULL),
-(4, 'Single Room', 'Quad', 'Free', NULL),
-(5, 'Superior Room', 'Quad', 'Free', NULL),
-(6, 'Deluxe Room', 'Single', 'Free', NULL),
-(7, 'Deluxe Room', 'Double', 'Free', NULL),
-(8, 'Deluxe Room', 'Triple', 'Free', NULL),
-(9, 'Deluxe Room', 'Quad', 'Free', NULL),
-(10, 'Guest House', 'Single', 'Free', NULL),
-(11, 'Guest House', 'Double', 'Free', NULL),
-(12, 'Guest House', 'Quad', 'Free', NULL),
-(13, 'Single Room', 'Single', 'Free', NULL),
-(14, 'Single Room', 'Double', 'Free', NULL),
-(15, 'Single Room', 'Triple', 'Free', NULL);
+
 
 -- --------------------------------------------------------
 
@@ -171,8 +153,6 @@ ALTER TABLE `login`
 --
 -- Indexes for table `newsletterlog`
 --
-ALTER TABLE `newsletterlog`
- ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `room`
@@ -202,9 +182,7 @@ ALTER TABLE `login`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `newsletterlog`
---
-ALTER TABLE `newsletterlog`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `room`
 --
