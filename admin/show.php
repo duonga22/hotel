@@ -250,7 +250,7 @@ tr:hover .cut { opacity: 1; }
 						<td><span ><?php echo $nodays; ?> </span></td>
 						
 					</tr>
-					<tr>
+					<tr>		
 						<td><span ><?php echo $Bed_type; ?>  Bed </span></td>
 						<td><span ><?php echo $nodays; ?></span></td>
 						
