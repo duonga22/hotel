@@ -642,7 +642,7 @@ include('db.php');
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													<td><a href=paymentVisa.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
 													</tr>";
 											}
 											else
@@ -660,7 +660,7 @@ include('db.php');
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													<td><a href=paymentVisa.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
 													</tr>";
 											
 											}
