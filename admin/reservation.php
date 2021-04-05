@@ -1,3 +1,8 @@
+<?php 
+error_reporting(0);
+?>
+
+
 <?php
 include('db.php')
 ?>
@@ -198,8 +203,8 @@ include('db.php')
 
                                 <?php
 
-                                $room = $_POST['troom'];
-                                echo  $room;
+                              
+                               
 
 
                                 if (isset($_POST['submit'])) {
@@ -303,45 +308,51 @@ include('db.php')
                                         $f6 = "NO";
                                     }
 
+                                    $room = $_POST['troom'];
+                                  
 
                                     if ($room == "Superior Room") {
                                         if ($f1 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            header("Location: index.php");
+                                            
                                         }
                                     } else if ($room == "Guest House") {
                                         if ($f2 == "NO") {
-                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Guest Room ')</script>";
+                                            header("Location: index.php");
                                         }
                                     } else if ($room == "Single Room") {
                                         if ($f3 == "NO") {
-                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room ')</script>";
+                                            header("Location: index.php");
                                         }
                                     } else if ($room == "Deluxe Room") {
                                         if ($f4 == "NO") {
-                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room ')</script>";
+                                            header("Location: index.php");
                                         }
                                     } else if ($room == "Junior Suite") {
                                         if ($f5 == "NO") {
-                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Junior Suite Room ')</script>";
+                                            header("Location: index.php");
                                         }
                                     } else if ($room == "Executive Suite") {
                                         if ($f6 == "NO") {
-                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+                                            echo "<script type='text/javascript'> alert('Sorry! Not Available Executive Suite Room ')</script>";
+                                            header("Location: index.php");
                                         }
                                     }
+                                    else {
 
-
-
-
-
-
-                                    $new = "Not Confirm";
+                                     $new = "Not Confirm";
                                     $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
                                     if (mysqli_query($con, $newUser)) {
                                         echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
                                     } else {
                                         echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
                                     }
+                                }
                                 }
 
 

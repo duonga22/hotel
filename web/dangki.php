@@ -93,7 +93,7 @@ function myFunction() {
     <div class="container demo-1">
         <div class="content">
             <div id="large-header" class="large-header">
-                <h1>XUCANA SIGNIN Form</h1>
+              
                 <div class="main-agileits">
                     <!--form-stars-here-->
                     <div class="form-w3-agile">

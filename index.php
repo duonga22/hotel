@@ -91,8 +91,8 @@ include('db.php');
 							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
 							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
 							<li class="menu__item"><a href="#booked" class="menu__link scroll">Booked List</a></li>
-							<li class="menu__item"><a href="web/dangki.php" ><button class="btn btn-primary" >Sign In</button> </a></li>
-							<li ><a href="web/dangxuat.php" ><button class="btn btn-primary"  > Logout </button></a></li>
+							<li class="menu__item"><a href="web/dangki.php" >Sign In</a></li>
+							<li ><a href="web/dangxuat.php" > Log out </a></li>
 						</ul>
 					</nav>
 				</div>
