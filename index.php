@@ -683,7 +683,7 @@ include('db.php');
 			<div class="contact-agileits">
 				<h4>Contact Us</h4>
 				<p class="contact-agile2">Sign Up For Our News Letters</p>
-				<form  method="post" name="sentMessage" id="contactForm" >
+				<form  method="post" name="sentMessage" id="contactForm" action="PHPMailer/phpsentmail.php" >
 					<div class="control-group form-group">
                         
                             <label class="contact-p1">Full Name:</label>

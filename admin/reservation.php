@@ -215,7 +215,7 @@ include('db.php');
                         </div>
 
 
-                        <!-- <div class="col-md-12 col-sm-12">
+                        <div class="col-md-12 col-sm-12">
                             <div class="well">
                                 <h4>HUMAN VERIFICATION</h4>
                                 <p>Type Below this code <?php $Random_code = rand();
@@ -223,7 +223,7 @@ include('db.php');
                                 <p>Enter the random code<br /></p>
                                 <input type="text" name="code1" title="random code" />
                                 <input type="hidden" name="code" value="<?php echo $Random_code; ?>" />
-                                <input type="submit" name="submit" class="btn btn-primary">
+                                <input type="submit" name="submit" class="btn btn-primary"> 
                                 <?php
                                 if (isset($_POST['submit'])) {
                                     $code1 = $_POST['code1'];

@@ -1,7 +1,4 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-
 session_start();
 if (!isset($_SESSION["user"])) {
 	header("location:index.php");
@@ -235,7 +232,6 @@ if (!isset($_GET["rid"])) {
 
 
 							</div>
-							<!-- cần sửa code -->
 							<div class="panel-footer">
 								<form method="post">
 									<div class="form-group">
@@ -437,34 +433,13 @@ if (isset($_POST['co'])) {
 
 	if ($st == "Conform") {
 		$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
-//cần sửa code phần này
-		// if ($f1 == "NO") {
-		// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
-		// } else 
-		// if ($f2 == "NO") {
-		// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Guest House')</script>";
-		// } else if ($f3 == "NO") {
-		// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
-		// } else if ($f4 == "NO") {
-		// 	echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room')</script>";
-		// } else
-         if (mysqli_query($con, $urb)) {
-			echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
-			// echo "<script type='text/javascript'> window.location='home.php'</script>";
-			$type_of_room = 0;
-			if ($troom == "Superior Room") {
-				$type_of_room = 320;
-			} else if ($troom == "Deluxe Room") {
-				$type_of_room = 220;
-			} else if ($troom == "Guest House") {
-				$type_of_room = 180;
-			} else if ($troom == "Single Room") {
-				$type_of_room = 150;
-			}
-
-
-
-
+		if ($troom == "Superior Room"){
+			if ($f1 == "NO") {
+			echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+		} else if (mysqli_query($con, $urb)) {
+			//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
+			//echo "<script type='text/javascript'> window.location='home.php'</script>";
+			$type_of_room = 320;
 			if ($bed == "Single") {
 				$type_of_bed = $type_of_room * 1 / 100;
 			} else if ($bed == "Double") {
@@ -477,7 +452,6 @@ if (isset($_POST['co'])) {
 				$type_of_bed = $type_of_room * 0 / 100;
 			}
 
-
 			if ($meal == "Room only") {
 				$type_of_meal = $type_of_bed * 0;
 			} else if ($meal == "Breakfast") {
@@ -486,9 +460,8 @@ if (isset($_POST['co'])) {
 				$type_of_meal = $type_of_bed * 3;
 			} else if ($meal == "Full Board") {
 				$type_of_meal = $type_of_bed * 4;
+
 			}
-
-
 			$ttot = $type_of_room * $days * $nroom;
 			$mepr = $type_of_meal * $days;
 			$btot = $type_of_bed * $days;
@@ -503,116 +476,289 @@ if (isset($_POST['co'])) {
 				$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 				if (mysqli_query($con, $rpsql)) {
 					echo "<script type='text/javascript'> alert('Booking Conform')</script>";
-				
-
-
-require_once '../PHPMailer/OAuth.php';
-require_once '../PHPMailer/Exception.php';
-require_once '../PHPMailer/PHPMailer.php';
-require_once '../PHPMailer/SMTP.php';
-
-$mail = new PHPMailer(true);
-
-$alert = '';
-
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'thunguyen.dn2021@gmail.com'; // Gmail address which you want to use as SMTP server
-    $mail->Password = 'happyteam21'; // Gmail address Password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = '587';
-
-    $mail->setFrom('thunguyen.dn2021@gmail.com'); // Gmail address which you used as SMTP server
-    $mail->addAddress($email); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
-
-    $mail->isHTML(true);
-    $mail->Subject = 'Your order is submitted successfully.';
-    $mail->Body = '
-    <h3  style="color:#00004d;">Thank you for your order. Your order is below:</h3>
-    
-    <table style="border-collapse: collapse; font-family: Arial, Helvetica, sans-serif; border: 1px solid #ddd;width: 80%"; text-align:center; >
-      <tr>
-        <th  style=" padding: 12px ;border-collapse: collapse;border: 1px solid #ddd; background-color: #4CAF50;color: white;text-align:center;"><strong>DESCRIPTION</th>
-        <th style=" padding: 12px ;border-collapse: collapse;border: 1px solid #ddd;background-color: #4CAF50;color: white;text-align:center;">INFORMATION</th></strong>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Name</t>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$title"." $fname"." $lname".'</td>
-  
-      </tr>
-      
-      
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Phone No </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$Phone".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Type Of the Room </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$troom".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">No Of the Room </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$nroom".'</td>
-  
-      </tr>
-      <tr>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Meal Plan </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$meal".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Bedding </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$bed".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Check-in Date </td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$cin".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Check-out Date</td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$cout".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">No of days</td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$days".'</td>
-  
-      </tr>
-      <tr >
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd; color:red;text-align:center;">Total</td>
-        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$fintot".'</td>
-  
-      </tr>
-    
-    </table>
-  
-  ';
-
-
-  if($mail->send()){
-    echo '<script>Xác nhận đơn hàng đã được gửi về gmail của khách.</script>';
-  }else{
-    echo '<script>Mail xác nhận không được gửi đi.</script>';
-  }
+					// $esuccess = mail($email, "Xác nhận đặt phòng", "Cảm ơn bạn đã đặt phòng tại hệ thống của chúng tôi!", "From:nunnun20082001@gmail.com \r\n");
+					// 		if($esuccess == true){
+					// 			echo "Xác nhận đơn hàng đã được gửi về gmail của khách.";
+					// 		}else{
+					// 			echo "Mail xác nhận không được gửi đi.";
+					// 		}
+					//Email address of the receiver
+					// $to = "thu.nguyen22@student.passerellesnumeriques.org";
+					//Email subject
+					$subject = 'Your order is submitted successfully.';
+					//Set the email body
+					$message = '
+<p style="font-size:16px;">You have ordered the following products:</p>
+<ol>
+<li> A4 Mouse </li>
+<li> Samsung Printer </li>
+<li> HP Scanner </li>
+</ol>
+<p>Thank you for your order.</p>
+';
+					//Newline characters
+					$nl = "\r\n";
+					//Header information
+					$headers = 'MIME-Version: 1.0'.$nl;
+					$headers .= 'Content-type: text/html; charset=iso-8859-1'.$nl;
+					$headers .= 'From: XUCANA HOTEL <thunguyen.dn2021@gmail.com>'.$nl;
+					//Send email
+					if (mail($email, $subject, $message, $headers))
+						echo "<script type='text/javascript'> alert('Xác nhận đơn hàng đã được gửi về gmail của khách.')</script>";
+					else
+						echo "<script type='text/javascript'> alert('Mail xác nhận không được gửi đi.')</script>";
 					echo "<script type='text/javascript'> window.location='roombook.php'</script>";
-		
-	
-
-
-
 				}
 			}
+		}
+	}
 
+
+	if ($troom ==  "Deluxe Room"){
+		if ($f1 == "NO") {
+		echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+	} else if (mysqli_query($con, $urb)) {
+		//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
+		//echo "<script type='text/javascript'> window.location='home.php'</script>";
+		$type_of_room = 220;
+		if ($bed == "Single") {
+			$type_of_bed = $type_of_room * 1 / 100;
+		} else if ($bed == "Double") {
+			$type_of_bed = $type_of_room * 2 / 100;
+		} else if ($bed == "Triple") {
+			$type_of_bed = $type_of_room * 3 / 100;
+		} else if ($bed == "Quad") {
+			$type_of_bed = $type_of_room * 4 / 100;
+		} else if ($bed == "None") {
+			$type_of_bed = $type_of_room * 0 / 100;
+		}
+
+		if ($meal == "Room only") {
+			$type_of_meal = $type_of_bed * 0;
+		} else if ($meal == "Breakfast") {
+			$type_of_meal = $type_of_bed * 2;
+		} else if ($meal == "Half Board") {
+			$type_of_meal = $type_of_bed * 3;
+		} else if ($meal == "Full Board") {
+			$type_of_meal = $type_of_bed * 4;
+
+		}
+		$ttot = $type_of_room * $days * $nroom;
+		$mepr = $type_of_meal * $days;
+		$btot = $type_of_bed * $days;
+
+		$fintot = $ttot + $mepr + $btot;
+
+		//echo "<script type='text/javascript'> alert('$count_date')</script>";
+		$psql = "INSERT INTO `payment`(`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`,`meal`, `mepr`, `btot`,`fintot`,`noofdays`) VALUES ('$id','$title','$fname','$lname','$troom','$bed','$nroom','$cin','$cout','$ttot','$meal','$mepr','$btot','$fintot','$days')";
+
+		if (mysqli_query($con, $psql)) {
+			$notfree = "NotFree";
+			$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+			if (mysqli_query($con, $rpsql)) {
+				echo "<script type='text/javascript'> alert('Booking Conform')</script>";
+				// $esuccess = mail($email, "Xác nhận đặt phòng", "Cảm ơn bạn đã đặt phòng tại hệ thống của chúng tôi!", "From:nunnun20082001@gmail.com \r\n");
+				// 		if($esuccess == true){
+				// 			echo "Xác nhận đơn hàng đã được gửi về gmail của khách.";
+				// 		}else{
+				// 			echo "Mail xác nhận không được gửi đi.";
+				// 		}
+				//Email address of the receiver
+				// $to = "thu.nguyen22@student.passerellesnumeriques.org";
+				//Email subject
+				$subject = 'Your order is submitted successfully.';
+				//Set the email body
+				$message = '
+<p style="font-size:16px;">You have ordered the following products:</p>
+<ol>
+<li> A4 Mouse </li>
+<li> Samsung Printer </li>
+<li> HP Scanner </li>
+</ol>
+<p>Thank you for your order.</p>
+';
+				//Newline characters
+				$nl = "\r\n";
+				//Header information
+				$headers = 'MIME-Version: 1.0'.$nl;
+				$headers .= 'Content-type: text/html; charset=iso-8859-1'.$nl;
+				$headers .= 'From: XUCANA HOTEL <thunguyen.dn2021@gmail.com>'.$nl;
+				//Send email
+				if (mail($email, $subject, $message, $headers))
+					echo "<script type='text/javascript'> alert('Xác nhận đơn hàng đã được gửi về gmail của khách.')</script>";
+				else
+					echo "<script type='text/javascript'> alert('Mail xác nhận không được gửi đi.')</script>";
+				echo "<script type='text/javascript'> window.location='roombook.php'</script>";
+			}
+		}
+	}
+}
+
+if ($troom ==  "Single Room"){
+	if ($f1 == "NO") {
+	echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+} else if (mysqli_query($con, $urb)) {
+	//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
+	//echo "<script type='text/javascript'> window.location='home.php'</script>";
+	$type_of_room = 150;
+	if ($bed == "Single") {
+		$type_of_bed = $type_of_room * 1 / 100;
+	} else if ($bed == "Double") {
+		$type_of_bed = $type_of_room * 2 / 100;
+	} else if ($bed == "Triple") {
+		$type_of_bed = $type_of_room * 3 / 100;
+	} else if ($bed == "Quad") {
+		$type_of_bed = $type_of_room * 4 / 100;
+	} else if ($bed == "None") {
+		$type_of_bed = $type_of_room * 0 / 100;
+	}
+
+	if ($meal == "Room only") {
+		$type_of_meal = $type_of_bed * 0;
+	} else if ($meal == "Breakfast") {
+		$type_of_meal = $type_of_bed * 2;
+	} else if ($meal == "Half Board") {
+		$type_of_meal = $type_of_bed * 3;
+	} else if ($meal == "Full Board") {
+		$type_of_meal = $type_of_bed * 4;
+
+	}
+	$ttot = $type_of_room * $days * $nroom;
+	$mepr = $type_of_meal * $days;
+	$btot = $type_of_bed * $days;
+
+	$fintot = $ttot + $mepr + $btot;
+
+	//echo "<script type='text/javascript'> alert('$count_date')</script>";
+	$psql = "INSERT INTO `payment`(`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`,`meal`, `mepr`, `btot`,`fintot`,`noofdays`) VALUES ('$id','$title','$fname','$lname','$troom','$bed','$nroom','$cin','$cout','$ttot','$meal','$mepr','$btot','$fintot','$days')";
+
+	if (mysqli_query($con, $psql)) {
+		$notfree = "NotFree";
+		$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+		if (mysqli_query($con, $rpsql)) {
+			echo "<script type='text/javascript'> alert('Booking Conform')</script>";
+			// $esuccess = mail($email, "Xác nhận đặt phòng", "Cảm ơn bạn đã đặt phòng tại hệ thống của chúng tôi!", "From:nunnun20082001@gmail.com \r\n");
+			// 		if($esuccess == true){
+			// 			echo "Xác nhận đơn hàng đã được gửi về gmail của khách.";
+			// 		}else{
+			// 			echo "Mail xác nhận không được gửi đi.";
+			// 		}
+			//Email address of the receiver
+			// $to = "thu.nguyen22@student.passerellesnumeriques.org";
+			//Email subject
+			$subject = 'Your order is submitted successfully.';
+			//Set the email body
+			$message = '
+<p style="font-size:16px;">You have ordered the following products:</p>
+<ol>
+<li> A4 Mouse </li>
+<li> Samsung Printer </li>
+<li> HP Scanner </li>
+</ol>
+<p>Thank you for your order.</p>
+';
+			//Newline characters
+			$nl = "\r\n";
+			//Header information
+			$headers = 'MIME-Version: 1.0'.$nl;
+			$headers .= 'Content-type: text/html; charset=iso-8859-1'.$nl;
+			$headers .= 'From: XUCANA HOTEL <thunguyen.dn2021@gmail.com>'.$nl;
+			//Send email
+			if (mail($email, $subject, $message, $headers))
+				echo "<script type='text/javascript'> alert('Xác nhận đơn hàng đã được gửi về gmail của khách.')</script>";
+			else
+				echo "<script type='text/javascript'> alert('Mail xác nhận không được gửi đi.')</script>";
+			echo "<script type='text/javascript'> window.location='roombook.php'</script>";
+		}
+	}
+}
+}
+
+if ($troom ==  "Guest House"){
+	if ($f1 == "NO") {
+	echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+} else if (mysqli_query($con, $urb)) {
+	//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
+	//echo "<script type='text/javascript'> window.location='home.php'</script>";
+	$type_of_room = 180;
+	if ($bed == "Single") {
+		$type_of_bed = $type_of_room * 1 / 100;
+	} else if ($bed == "Double") {
+		$type_of_bed = $type_of_room * 2 / 100;
+	} else if ($bed == "Triple") {
+		$type_of_bed = $type_of_room * 3 / 100;
+	} else if ($bed == "Quad") {
+		$type_of_bed = $type_of_room * 4 / 100;
+	} else if ($bed == "None") {
+		$type_of_bed = $type_of_room * 0 / 100;
+	}
+
+	if ($meal == "Room only") {
+		$type_of_meal = $type_of_bed * 0;
+	} else if ($meal == "Breakfast") {
+		$type_of_meal = $type_of_bed * 2;
+	} else if ($meal == "Half Board") {
+		$type_of_meal = $type_of_bed * 3;
+	} else if ($meal == "Full Board") {
+		$type_of_meal = $type_of_bed * 4;
+
+	}
+	$ttot = $type_of_room * $days * $nroom;
+	$mepr = $type_of_meal * $days;
+	$btot = $type_of_bed * $days;
+
+	$fintot = $ttot + $mepr + $btot;
+
+	//echo "<script type='text/javascript'> alert('$count_date')</script>";
+	$psql = "INSERT INTO `payment`(`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`,`meal`, `mepr`, `btot`,`fintot`,`noofdays`) VALUES ('$id','$title','$fname','$lname','$troom','$bed','$nroom','$cin','$cout','$ttot','$meal','$mepr','$btot','$fintot','$days')";
+
+	if (mysqli_query($con, $psql)) {
+		$notfree = "NotFree";
+		$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+		if (mysqli_query($con, $rpsql)) {
+			echo "<script type='text/javascript'> alert('Booking Conform')</script>";
+			// $esuccess = mail($email, "Xác nhận đặt phòng", "Cảm ơn bạn đã đặt phòng tại hệ thống của chúng tôi!", "From:nunnun20082001@gmail.com \r\n");
+			// 		if($esuccess == true){
+			// 			echo "Xác nhận đơn hàng đã được gửi về gmail của khách.";
+			// 		}else{
+			// 			echo "Mail xác nhận không được gửi đi.";
+			// 		}
+			//Email address of the receiver
+			// $to = "thu.nguyen22@student.passerellesnumeriques.org";
+			//Email subject
+			$subject = 'Your order is submitted successfully.';
+			//Set the email body
+			$message = '
+<p style="font-size:16px;">You have ordered the following products:</p>
+<ol>
+<li> A4 Mouse </li>
+<li> Samsung Printer </li>
+<li> HP Scanner </li>
+</ol>
+<p>Thank you for your order.</p>
+';
+			//Newline characters
+			$nl = "\r\n";
+			//Header information
+			$headers = 'MIME-Version: 1.0'.$nl;
+			$headers .= 'Content-type: text/html; charset=iso-8859-1'.$nl;
+			$headers .= 'From: XUCANA HOTEL <thunguyen.dn2021@gmail.com>'.$nl;
+			//Send email
+			if (mail($email, $subject, $message, $headers))
+				echo "<script type='text/javascript'> alert('Xác nhận đơn hàng đã được gửi về gmail của khách.')</script>";
+			else
+				echo "<script type='text/javascript'> alert('Mail xác nhận không được gửi đi.')</script>";
+			echo "<script type='text/javascript'> window.location='roombook.php'</script>";
+		}
+	}
+}
+}
+	}
 
 
 }
-}	 
-}
+
+		 
+
 
 ?>					
