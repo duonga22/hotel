@@ -4,11 +4,7 @@ session_start(); //session starts here
 <?php
 // kiểm tra kết nối
 $conn = mysqli_connect("localhost", "root", "", "hotel");
-if ($conn) {
-    echo "Đã kết nối đến DATABASE";
-} else {
-    die("Không thể kết nối đến DATABSE");
-}
+
 ?>
 
 <?php
@@ -18,7 +14,7 @@ function guiemail(){
     //Email subject
     $subject = " Bạn đã sửa mật khẩu thành công ";
     //Email message
-    $message = "Cảm ơn bạn đã đến với khách sạn chúng tôi!<br> bạn đã sửa mật khẩu thành công";
+    $message = "Cảm ơn bạn đã đến với khách sạn chúng tôi!<br> bạn đã đổi mật khẩu thành công";
     //Header information
     $headers = "From: XUCANA hotel <hothihuou2001@gmail.com>\r\n";
     //Send email
@@ -72,7 +68,7 @@ if (isset($_POST['add'])) {
 
     <!-- css files -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/resetpass.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/dangki.css" rel="stylesheet" type="text/css" media="all" />
     <!-- /css files -->
 
     <!-- online fonts -->
@@ -108,12 +104,12 @@ if (isset($_POST['add'])) {
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input type="checkbox" onclick="myFunction()">Show password Click here</p>
+                                <input type="checkbox" onclick="myFunction()">Show password Click here
                             </div>
-                            <p class="p-bottom-w3ls1">New User?<a class href="dangnhap.php"> LOGIN here</a></p>
+                            <p class="p-bottom-w3ls1"><a class href="dangnhap.php"> Sign up here</a></p>
                             <div class="clear"></div>
                             <div class="submit-w3l">
-                                <input type="submit" name="add" value="SIGN IN">
+                                <input type="submit"  name="add" value="SIGN IN">
                             </div>
                         </form>
                         <div class="social w3layouts">

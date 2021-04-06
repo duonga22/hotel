@@ -60,7 +60,7 @@ include('db.php')
                             <div class="panel-body">
                                 <form name="form" method="post">
                                     <div class="form-group">
-                                        <label>Title*</label>
+                                        <label>Title </label>
                                         <select name="title" class="form-control" required>
                                             <option value selected></option>
                                             <option value="Dr.">Dr.</option>
@@ -73,22 +73,22 @@ include('db.php')
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>First Name</label>
+                                        <label>First Name <span style="color: red"> * </span></label>
                                         <input name="fname" class="form-control" required>
 
                                     </div>
                                     <div class="form-group">
-                                        <label>Last Name</label>
+                                        <label>Last Name <span style="color: red"> * </span> </label>
                                         <input name="lname" class="form-control" required>
 
                                     </div>
                                     <div class="form-group">
-                                        <label>Email</label>
+                                        <label>Email <span style="color: red"> * </span></label>
                                         <input name="email" type="email" class="form-control" required>
 
                                     </div>
                                     <div class="form-group">
-                                        <label>Nationality*</label>
+                                        <label>Nationality </label>
                                         <label class="radio-inline">
                                             <input type="radio" name="nation" value="Vietnam" checked="">Vietnam
                                         </label>
@@ -125,18 +125,33 @@ include('db.php')
                                 </div>
                                 <div class="panel-body">
 
+                                    
+                                <?php
+                                    //đặt giờ của Việt Nam
+                                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                    //lấy ngày hiện tại
+                                    $today = date("Y-m-d");
+                                    $date = date('Y-m-d', strtotime($today . ' + 1 days'));
+                                    ?>
                                     <div class="form-group">
-                                        <label>Check-In *</label>
-                                        <input name="cin" type="date" class="form-control">
-
+                                        <label>Check-In <span style="color: red"> * </span></label>
+                                        <input name="cin" type="date" min=<?php echo $today; ?> class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Check-Out *</label>
-                                        <input name="cout" type="date" class="form-control">
-
+                                        <label>Check-Out <span style="color: red"> * </span></label>
+                                        <!-- <?php
+                                            
+                                            //cộng thêm 1 ngàY
+                                            $cin = $_POST['cin'];
+                                            $date = date('Y-m-d', strtotime($cin . ' + 1 days'));
+                                        ?> -->
+                                        <input name="cout" type="date" min=<?php echo $date; ?> class="form-control" required>
+                                       
                                     </div>
+
+
                                     <div class="form-group">
-                                        <label>Type Of Room *</label>
+                                        <label>Type Of Room <span style="color: red"> * </span></label>
                                         <select name="troom" class="form-control" required>
                                             <option value selected></option>
                                             <option value="Superior Room">SUPERIOR ROOM</option>
@@ -162,7 +177,7 @@ include('db.php')
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>No.of Rooms *</label>
+                                        <label>No.of Rooms <span style="color: red"> * </span></label>
                                         <select name="nroom" class="form-control" required>
                                             <option value selected></option>
                                             <option value="1">1</option>
@@ -317,43 +332,94 @@ include('db.php')
                                             header("Location: index.php");
                                             
                                         }
+                                        else {
+
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
                                     } else if ($room == "Guest House") {
                                         if ($f2 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Guest Room ')</script>";
                                             header("Location: index.php");
                                         }
+                                        else {
+
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
                                     } else if ($room == "Single Room") {
                                         if ($f3 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room ')</script>";
                                             header("Location: index.php");
                                         }
+                                        else {
+
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
                                     } else if ($room == "Deluxe Room") {
                                         if ($f4 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room ')</script>";
                                             header("Location: index.php");
                                         }
+                                        else {
+
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
                                     } else if ($room == "Junior Suite") {
                                         if ($f5 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Junior Suite Room ')</script>";
                                             header("Location: index.php");
                                         }
+                                        else {
+
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
                                     } else if ($room == "Executive Suite") {
                                         if ($f6 == "NO") {
                                             echo "<script type='text/javascript'> alert('Sorry! Not Available Executive Suite Room ')</script>";
                                             header("Location: index.php");
                                         }
-                                    }
-                                    else {
+                                        else {
 
-                                     $new = "Not Confirm";
-                                    $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
-                                    if (mysqli_query($con, $newUser)) {
-                                        echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
-                                    } else {
-                                        echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                            $new = "Not Confirm";
+                                           $newUser = "INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                           if (mysqli_query($con, $newUser)) {
+                                               echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                                           } else {
+                                               echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                           }
+                                       }
+                                    
+                                   
                                     }
-                                }
-                                }
 
 
 

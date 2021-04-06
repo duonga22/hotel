@@ -1,13 +1,5 @@
 <?php
-
-// kiểm tra kết nối
-$conn = mysqli_connect("localhost", "root","","hotel");
-if($conn){
-   // echo"Đã kết nối đến DATABASE";
-}
-else{
-    die("Không thể kết nối đến DATABSE");
-}
+include('db.php');
 ?>
 <?php
   error_reporting(0);
@@ -47,7 +39,7 @@ if(isset($_POST['signin'])){
                // Kiểm tra tài khoản đã tồn tại chưa
                $sql="select * from register where name='$name'";
                 $kt=mysqli_query($conn, $sql);
-            if(mysqli_num_rows($kt)  > 0){
+            if(mysqli_num_rows($kt)> 0){
                 echo '<script language="javascript">alert("Name is already exist in our database, Please try another one!"); window.history.go(-1);</script>';
             }else{
                 $sql = "
@@ -97,16 +89,16 @@ function myFunction() {
                 <div class="main-agileits">
                     <!--form-stars-here-->
                     <div class="form-w3-agile">
-                        <h2>SIGNIN Now</h2>
+                        <h1>Sign Up</h1>
                         <form action="dangki.php" method="post">
                             <div class="form-sub-w3">
-                                <input placeholder="name" name="fname" type="text" required>
+                                <input placeholder="Name" name="fname" type="text" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input  placeholder="sdt" name="sdt" type="number" required>
+                                <input  placeholder="Sdt" name="sdt" type="number" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                 </div>
@@ -118,13 +110,13 @@ function myFunction() {
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input  placeholder="address" name="address" type="text" required>
+                                <input  placeholder="Address" name="address" type="text" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-address-card" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input  placeholder="email" name="email" type="email" require=>
+                                <input  placeholder="Email" name="email" type="email" require=>
                                 <div class="icon-w3">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </div>
@@ -137,12 +129,13 @@ function myFunction() {
                                 </div>
                             </div>
                             <div class="form-sub-w4">
-                                <input type="checkbox" onclick="myFunction()">Show password Click here</p>
+                              <p style="color:white" > <input type="checkbox" onclick="myFunction()">Show password Click here</p>
                             </div>
-                            <p class="p-bottom-w3ls1">New User?<a class href="dangnhap.php"> LOGIN here</a></p>
+                            <p class="p-bottom-w3ls1" style="margin-top: 10px">
+                                <a class href="dangnhap.php"> Sign up here</a></p>
                             <div class="clear"></div>
                             <div class="submit-w3l">
-                                <input type="submit" name="signin" value="SIGN IN">
+                                <input type="submit" name="signin" value="SIGN UP">
                             </div>
                         </form>
                         <div class="social w3layouts">

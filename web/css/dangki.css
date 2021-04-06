@@ -79,9 +79,7 @@ img {
 	max-width:100%;
 }
 /*--- end reset code ---*/
-body {
-	font-family: 'Sirin Stencil', cursive;
-}
+
 
 input::-webkit-input-placeholder {
 color: #fff !important;
@@ -104,7 +102,7 @@ color: #fff !important;
 .large-header {
 	position: relative;
 	width: 100%;
-	background: #333;
+	background-image: url('https://i.pinimg.com/originals/5a/c1/29/5ac1296b709f4427d4c7785a322d78a2.png');
 	overflow: hidden;
 	background-size: cover;
 	background-position: center center;
@@ -112,7 +110,7 @@ color: #fff !important;
 }
 
 .demo-1 .large-header {
-	background-image: url('https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fblogs-images.forbes.com%2Flarryolmsted%2Ffiles%2F2016%2F10%2FPeninsula-Hong-KongSized.jpg');
+	/* background-image: url(''); */
 	background-position: center bottom;
 }
 
@@ -131,10 +129,8 @@ color: #fff !important;
     letter-spacing: 2px;
 }
 .form-w3-agile {
-    background: rgba(141, 140, 140, 0.56);
-    -webkit-box-shadow: 0px 35px 44px -22px rgba(0,0,0,0.72);
-    -moz-box-shadow: 0px 35px 44px -22px rgba(0,0,0,0.72);
-    box-shadow: 0px 35px 44px -22px #1f181b;
+    background: rgba(209, 141, 141, 0.56);
+    
     padding: 60px 40px;
 }
 h1 {
@@ -146,7 +142,6 @@ h1 {
     color: #ffffff;
     letter-spacing: 4px;
     word-spacing: 4px;
-    font-family: 'Sirin Stencil', cursive;
 }
 .icon-w3 i {
     color: #ffffff;
@@ -166,7 +161,7 @@ form {
 	position:relative;
     margin-bottom: 10px;
 }
-.form-sub-w3 input[type="text"],input[type="password"],input[type="number"],input[type="email"] {
+.form-sub-w3 input[type="text"],input[type="password"],input[type="number"],input[type="email"], input[type="checbox"] {
     outline: none;
     font-size: 15px;
     color: #ffffff;
@@ -179,12 +174,21 @@ form {
     -webkit-appearance: none;
     margin-bottom: 0px;
     background: transparent;
-	font-family: 'Sirin Stencil', cursive;
+	
 }
+
+input[type="checkbox"] {
+	color: thistle;
+	font-size: 20px;
+}
+
 /*  */
 input[type="submit"] {
-    background: #fff;
-    color: #000;
+	background: rgb(219, 168, 168);
+	width: 150px;
+	height: 40px;
+	border-radius: 20px;
+    color: white;
     outline: none;
     display: block;
     margin: 0 auto;
@@ -195,7 +199,6 @@ input[type="submit"] {
     margin-top: 20px;
     font-weight: bold;
     text-transform: uppercase;
-	font-family: 'Sirin Stencil', cursive;
 	transition: 0.3s all;
     -webkit-transition: 0.3s all;
     -moz-transition: 0.3s all;
@@ -203,8 +206,8 @@ input[type="submit"] {
     -ms-transition: 0.3s all;
 }
 input[type="submit"]:hover{
-    background: #4CAF50;
-	color:#ffffff;
+    background:wheat;
+	color:palevioletred;
 	transition: 0.3s all;
     -webkit-transition: 0.3s all;
     -moz-transition: 0.3s all;
@@ -221,16 +224,17 @@ input[type="submit"]:hover{
 }
 .p-bottom-w3ls1 {
     font-size: 16px;
-    color: #eee;
+    color:#eee;
     margin-top: 0em;
     text-align: center;
 	text-transform: none;
 	float:left;
 }
 .p-bottom-w3ls a,.p-bottom-w3ls1 a{
-    color: #8BC34A;
+	font-size: 20px;
+    color:#dbc2ad;
 	outline:none;
-	text-decoration:none;
+	text-decoration:underline;
 }
 /*--copy-right-starts-here--*/
 .copyright p {
@@ -241,10 +245,10 @@ input[type="submit"]:hover{
     color: #fff;
 	letter-spacing: 1px;
     text-transform: none;
-	font-family: 'Sirin Stencil', cursive;
+	
 }
 .copyright a {
-    color: #8BC34A;
+    color:#87CEFA;
     font-weight: bold;
     transition: 0.3s all;
     -webkit-transition: 0.3s all;

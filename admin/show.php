@@ -198,7 +198,7 @@ tr:hover .cut { opacity: 1; }
 				<p>101B Lê Hữu Trác<br>Sơn Trà,<br>Đà Nẵng.</p>
 				<p>(+94) 89 222 44 55</p>
 			</address>
-			<span><img alt="" src="https://i.pinimg.com/originals/12/54/dd/1254dd3a79ec7617bbe1c679910b5d35.png"></span>
+			<span><img alt="" src="images/augusto.png"></span>
 		</header>
 		<article>
 			<h1></h1>
