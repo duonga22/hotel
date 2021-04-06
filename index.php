@@ -514,7 +514,9 @@ include('db.php');
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
-													<td><a href=paymentVisa.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													<td><form action='stripe/checkout.php' method='POST'>
+                    <input type='hidden' name='id' value='$id'>
+                    <button type='submit' name='sub' >PAYMENT</button></td></form>
 													</tr>";
 											}
 											else
@@ -532,7 +534,9 @@ include('db.php');
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
-													<td><a href=paymentVisa.php?pid=".$id ." <button class='btn btn-primary'> Payment</button></td>
+													<td><form action='stripe/checkout.php' method='POST'>
+                    <input type='hidden' name='id' value='$id'>
+                    <button type='submit' name='sub' >PAYMENT</button></td></form>
 													</tr>";
 											
 											}
