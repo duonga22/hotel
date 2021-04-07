@@ -64,9 +64,8 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a class="active-menu" href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                     </li>
-                    <li>
-                        <a href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
-                    </li>
+                   
+                    
 					<li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
                     </li>
@@ -111,7 +110,7 @@ if(!isset($_SESSION["user"]))
 								$new = $row['stat'];
 								$cin = $row['cin'];
 								$id = $row['id'];
-								if($new=="Not Conform")
+								if($new=="Not Confirm")
 								{
 									$c = $c + 1;
 									
@@ -154,10 +153,10 @@ if(!isset($_SESSION["user"]))
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Stt</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Country</th>
+                                          
 											<th>Room</th>
 											<th>Bedding</th>
 											<th>Meal</th>
@@ -176,13 +175,13 @@ if(!isset($_SESSION["user"]))
 									while($trow=mysqli_fetch_array($tre) )
 									{	
 										$co =$trow['stat']; 
-										if($co=="Not Conform")
+										if($co=="Not Confirm")
 										{
 											echo"<tr>
 												<th>".$trow['id']."</th>
 												<th>".$trow['FName']." ".$trow['LName']."</th>
 												<th>".$trow['Email']."</th>
-												<th>".$trow['Country']."</th>
+											
 												<th>".$trow['TRoom']."</th>
 												<th>".$trow['Bed']."</th>
 												<th>".$trow['Meal']."</th>
@@ -211,16 +210,13 @@ if(!isset($_SESSION["user"]))
 								
 								$rsql = "SELECT * FROM `roombook`";
 								$rre = mysqli_query($con,$rsql);
-								$r =0;
+								$r = 0;
 								while($row=mysqli_fetch_array($rre) )
 								{		
 										$br = $row['stat'];
-										if($br=="Conform")
+										if($br=="confirm")
 										{
-											$r = $r + 1;
-											
-											
-											
+											$r = $r + 1;	
 										}
 										
 								
@@ -247,7 +243,7 @@ if(!isset($_SESSION["user"]))
 										while($mrow=mysqli_fetch_array($mre) )
 										{		
 											$br = $mrow['stat'];
-											if($br=="Conform")
+											if($br=="confirm")
 											{
 												$fid = $mrow['id'];
 												 
@@ -293,68 +289,10 @@ if(!isset($_SESSION["user"]))
 								}
 						
 								?>
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
-											<button class="btn btn-primary" type="button">
-												 Followers  <span class="badge"><?php echo $f ; ?></span>
-											</button>
-											</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-											<th>Follow Start</th>
-                                            <th>Permission status</th>
-                                            
-											
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-									<?php
-									$csql = "select * from contact";
-									$cre = mysqli_query($con,$csql);
-									while($crow=mysqli_fetch_array($cre) )
-									{	
-										
-											echo"<tr>
-												<th>".$crow['id']."</th>
-												<th>".$crow['fullname']."</th>
-												<th>".$crow['email']." </th>
-												<th>".$crow['cdate']." </th>
-												<th>".$crow['approval']."</th>
-												</tr>";
-										
-									
-									}
-									?>
-                                        
-                                    </tbody>
-                                </table>
-								<a href="messages.php" class="btn btn-primary">More Action</a>
-                            </div>
-                        </div>
-                    </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-			
+                              
+			<?php
+                    error_reporting(0);
+            ?>
 				<!-- DEOMO-->
 				<div class='panel-body'>
                             <button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
@@ -367,7 +305,7 @@ if(!isset($_SESSION["user"]))
                                             <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
                                             <h4 class='modal-title' id='myModalLabel'>Change the User name and Password</h4>
                                         </div>
-										<form method='post>
+										<form method='post'>
                                         <div class='modal-body'>
                                             <div class='form-group'>
                                             <label>Change User name</label>

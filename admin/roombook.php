@@ -27,7 +27,7 @@ if(!isset($_SESSION["user"]))
 					$lname = $row['LName'];
 					$email = $row['Email'];
 					$nat = $row['National'];
-					$country = $row['Country'];
+					
 					$Phone = $row['Phone'];
 					$troom = $row['TRoom'];
 					$nroom = $row['NRoom'];
@@ -182,11 +182,7 @@ if(!isset($_SESSION["user"]))
                                             <th><?php echo $nat; ?></th>
                                             
                                         </tr>
-										<tr>
-                                            <th>Country </th>
-                                            <th><?php echo $country;  ?></th>
-                                            
-                                        </tr>
+										
 										<tr>
                                             <th>Phone No </th>
                                             <th><?php echo $Phone; ?></th>
@@ -249,12 +245,12 @@ if(!isset($_SESSION["user"]))
 														<label>Select the Conformation</label>
 														<select name="conf"class="form-control">
 															<option value selected>	</option>
-															<option value="Conform">Conform</option>
+															<option value="confirm">Confirm</option>
 															
 															
 														</select>
 										 </div>
-							<input type="submit" name="co" value="Conform" class="btn btn-success">
+							<input type="submit" name="co" value="Confirm" class="btn btn-info">
 							
 							</form>
                         </div>
@@ -269,11 +265,13 @@ if(!isset($_SESSION["user"]))
 						$gh = 0;
 						$sr = 0;
 						$dr = 0;
+						$js = 0;
+						$es=0;
 						while($rrow=mysqli_fetch_array($rre))
 						{
 							$r = $r + 1;
 							$s = $rrow['type'];
-							$p = $rrow['place'];
+						
 							if($s=="Superior Room" )
 							{
 								$sc = $sc+ 1;
@@ -291,6 +289,14 @@ if(!isset($_SESSION["user"]))
 							{
 								$dr = $dr + 1;
 							}
+							if($s=="Junior Suite" )
+							{
+								$js = $js + 1;
+							}
+							if($s=="Executive Suite" )
+							{
+								$es = $es + 1;
+							}
 							
 						
 						}
@@ -304,6 +310,9 @@ if(!isset($_SESSION["user"]))
 						$cgh = 0;
 						$csr = 0;
 						$cdr = 0;
+						$cjs =0;
+						$ces =0;
+
 						while($crow=mysqli_fetch_array($cre))
 						{
 							$cr = $cr + 1;
@@ -325,6 +334,14 @@ if(!isset($_SESSION["user"]))
 							if($cs=="Deluxe Room" )
 							{
 								$cdr = $cdr + 1;
+							}
+							if($cs=="Junior Suite" )
+							{
+								$cjs = $cjs + 1;
+							}
+							if($cs=="Executive Suite" )
+							{
+								$ces = $ces + 1;
 							}
 							
 						
@@ -397,16 +414,46 @@ if(!isset($_SESSION["user"]))
 								?> </button></td> 
 							</tr>
 							<tr>
-								<td><b>Total Rooms	</b> </td>
-								<td> <button type="button" class="btn btn-danger btn-circle"><?php 
+							<tr>
+								<td><b>Junior Suite</b>	 </td>
+								<td><button type="button" class="btn btn-primary btn-circle"><?php 
 								
-								$f5 =$r-$cr; 
+								$f5 =$js - $cjs; 
 								if($f5 <=0 )
 									{	$f5 = "NO";
 										echo $f5;
 									}
 									else{
 											echo $f5;
+									}
+								?> </button></td> 
+							</tr>
+							<tr>
+							<tr>
+								<td><b>Executive Suite</b>	 </td>
+								<td><button type="button" class="btn btn-primary btn-circle"><?php 
+								
+								$f6 =$es - $ces; 
+								if($f6 <=0 )
+									{	$f6 = "NO";
+										echo $f6;
+									}
+									else{
+											echo $f6;
+									}
+								?> </button></td> 
+							</tr>
+							<tr>
+								<td><b>Total Rooms	</b> </td>
+								<td> <button type="button" class="btn btn-danger btn-circle"><?php 
+								
+								$f7 =$r-$cr; 
+								if($f7 <=0 )
+									{	$f7 = "NO";
+										echo $f7;
+									}
+									else{
+											echo $f7;
 									}
 								 ?> </button></td> 
 							</tr>
@@ -456,47 +503,45 @@ if(!isset($_SESSION["user"]))
 </html>
 
 <?php
+			
+
 						if(isset($_POST['co']))
 						{	
 							$st = $_POST['conf'];
+
 							
-							 
-							
-							if($st=="Conform")
-							{
+								if($st=="confirm")
+						{
 									$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
 									
-								if($f1=="NO" )
-								{
-									echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
-								}
-								else if($f2 =="NO")
-									{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Guest House')</script>";
+								
 										
-									}
-									else if ($f3 == "NO")
-									{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
-									}
-										else if($f4=="NO")
-										{
-										echo "<script type='text/javascript'> alert('Sorry! Not Available Deluxe Room')</script>";
-										}
 										
-										else if( mysqli_query($con,$urb))
+									 if( mysqli_query($con,$urb))
 											{	
+
+											
 												//echo "<script type='text/javascript'> alert('Guest Room booking is conform')</script>";
 												//echo "<script type='text/javascript'> window.location='home.php'</script>";
 												 $type_of_room = 0;       
 														if($troom=="Superior Room")
 														{
-															$type_of_room = 320;
+															$type_of_room = 350;
+														
+														}
+														if($troom=="Junior Suite")
+														{
+															$type_of_room = 450;
+														
+														}
+														if($troom=="Executive Suite")
+														{
+															$type_of_room = 500;
 														
 														}
 														else if($troom=="Deluxe Room")
 														{
-															$type_of_room = 220;
+															$type_of_room = 250;
 														}
 														else if($troom=="Guest House")
 														{
@@ -526,11 +571,14 @@ if(!isset($_SESSION["user"]))
 														{
 															$type_of_bed = $type_of_room * 4/100;
 														}
-														else if($bed=="None")
+														else if($bed=="Queen Size")
 														{
-															$type_of_bed = $type_of_room * 0/100;
+															$type_of_bed = $type_of_room * 5/100;
 														}
-														
+														else if($bed=="King Size")
+														{
+															$type_of_bed = $type_of_room * 7/100;
+														}
 														
 														if($meal=="Room only")
 														{
@@ -560,24 +608,117 @@ if(!isset($_SESSION["user"]))
 														
 														if(mysqli_query($con,$psql))
 														{	$notfree="NotFree";
-															$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+															$rpsql = "UPDATE `room` SET ,`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 															if(mysqli_query($con,$rpsql))
 															{
-															echo "<script type='text/javascript'> alert('Booking Conform')</script>";
-															echo "<script type='text/javascript'> window.location='roombook.php'</script>";
-															}
-															
-															
-														}
-												
-											}
-									
-                                        
-							}	
-					
-						}
-					
-									
-									
-							
-						?>
+															echo "<script type='text/javascript'> alert('Booking Confirm')</script>";
+															require_once '../PHPMailer/OAuth.php';
+require_once '../PHPMailer/Exception.php';
+require_once '../PHPMailer/PHPMailer.php';
+require_once '../PHPMailer/SMTP.php';
+
+$mail = new PHPMailer(true);
+
+$alert = '';
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'thunguyen.dn2021@gmail.com'; // Gmail address which you want to use as SMTP server
+    $mail->Password = 'happyteam21'; // Gmail address Password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = '587';
+
+    $mail->setFrom('thunguyen.dn2021@gmail.com'); // Gmail address which you used as SMTP server
+    $mail->addAddress($email); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Your order is submitted successfully.';
+    $mail->Body = '
+    <h3  style="color:#00004d;">Thank you for your order. Your order is below:</h3>
+    
+    <table style="border-collapse: collapse; font-family: Arial, Helvetica, sans-serif; border: 1px solid #ddd;width: 80%"; text-align:center; >
+      <tr>
+        <th  style=" padding: 12px ;border-collapse: collapse;border: 1px solid #ddd; background-color: #4CAF50;color: white;text-align:center;"><strong>DESCRIPTION</th>
+        <th style=" padding: 12px ;border-collapse: collapse;border: 1px solid #ddd;background-color: #4CAF50;color: white;text-align:center;">INFORMATION</th></strong>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Name</t>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$title"." $fname"." $lname".'</td>
+  
+      </tr>
+      
+      
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Phone No </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$Phone".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Type Of the Room </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$troom".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">No Of the Room </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$nroom".'</td>
+  
+      </tr>
+      <tr>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Meal Plan </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$meal".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Bedding </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$bed".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Check-in Date </td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$cin".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">Check-out Date</td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$cout".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">No of days</td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$days".'</td>
+  
+      </tr>
+      <tr >
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd; color:red;text-align:center;">Total</td>
+        <td style=" padding: 8px;border-collapse: collapse;border: 1px solid #ddd;text-align:left;">'."$fintot".'</td>
+  
+      </tr>
+    
+    </table>
+  
+  ';
+
+
+  if($mail->send()){
+    echo '<script>Xác nhận đơn hàng đã được gửi về gmail của khách.</script>';
+  }else{
+    echo '<script>Mail xác nhận không được gửi đi.</script>';
+  }
+					echo "<script type='text/javascript'> window.location='roombook.php'</script>";
+		
+	
+
+
+
+				}
+			}
+
+
+
+}
+}	 
+}
+
+?>					

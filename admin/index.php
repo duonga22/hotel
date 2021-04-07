@@ -10,13 +10,9 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>SUN RISE ADMIN</title>
-  
-  
-     
+  <title> ADMIN</title>
       <link rel="stylesheet" href="css/style.css">
 
-  
 </head>
 
 <body>
@@ -51,7 +47,7 @@
       </div> <!-- end login -->
 
     </div>
-    <div class="bottom">  <h3><a href="../index.php">SUN RISE HOMEPAGE</a></h3></div>
+   
   
   
 </body>
