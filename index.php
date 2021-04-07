@@ -1,3 +1,10 @@
+<?php
+	error_reporting(0);
+?>
+
+
+
+
 <?php  
 session_start();//session is a way to store information (in variables) to be used across multiple pages.  
 if(!isset($_SESSION["name"])) 
@@ -6,6 +13,8 @@ header("Location:web/dangnhap.php");//use for the redirection to some page
 <?php
 include('db.php');
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
