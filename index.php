@@ -17,6 +17,9 @@ include('db.php');
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+
+
+  
 		<!-- //book nơ-->
 		
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -276,9 +279,10 @@ include('db.php');
 
  
 	 <div class="container" id="rooms">
-				<div class="row">
+	
 				 
 				 <h3 class="title-w3-agileits title-black-wthree" style="margin-top: 100px">Rooms And Rates</h3>
+				 <div class="row">
 					
 <?php
 					
@@ -299,7 +303,9 @@ include('db.php');
 				$list[] = $row;
 			}
  
+		
         foreach ($list as $std) {
+		
 
 			$name=$std['type'];
 			$bed=$std['bedding'];
@@ -308,11 +314,16 @@ include('db.php');
 			$description=$std['description'];
 			$id = $std['id'];
 
-			
+			if($id %3 == 0){
 
+			
+			
+			
 			echo '
-			<div class="col-6 col-md-4">
-				<div class="card" style="width:370px">
+			
+			<div class="col-md-3">
+		
+				<div class="card" style="width:350px">
 					<img class="card-img-top" src="admin/image/'.$image.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 					
@@ -331,11 +342,13 @@ include('db.php');
 				</div>
 			</div>
 			
+		
+			
 					
 					
 	
 			';
-		
+			}
         }
 	
 ?>
@@ -492,7 +505,7 @@ include('db.php');
 
 										
 										include ('db.php');
-										$sql="select * from payment";
+										$sql="SELECT * FROM `payment` INNER JOIN `register` ON `payment`.id_register = `register`.id where `payment`.fname = `register.name`";
 										$re = mysqli_query($con,$sql);
 										while($row = mysqli_fetch_array($re))
 										{
@@ -515,8 +528,8 @@ include('db.php');
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
 													<td><form action='stripe/checkout.php' method='POST'>
-                    <input type='hidden' name='id' value='$id'>
-                    <button type='submit' name='sub' >PAYMENT</button></td></form>
+													<input type='hidden' name='id' value='$id'>
+													<button type='submit' name='sub' >PAYMENT</button></td></form>
 													</tr>";
 											}
 											else

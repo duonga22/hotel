@@ -77,8 +77,10 @@ CREATE TABLE `payment` (
   `mepr` double(8,2) DEFAULT NULL,
   `meal` varchar(30) DEFAULT NULL,
   `btot` double(8,2) DEFAULT NULL,
-  `noofdays` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `noofdays` int(11) DEFAULT NULL,
+   primary key (id),
+  `id_register` int(11) FOREIGN KEY REFERENCES register(id)
+);
 
 -- --------------------------------------------------------
 
