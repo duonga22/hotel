@@ -25,8 +25,11 @@ function guiemail(){
 }
 if (isset($_POST['add'])) {
     $email = $_POST['email'];
-    $newpass = mysqli_real_escape_string($conn, $_POST['newpass']);
-    $cpass = mysqli_real_escape_string($conn, $_POST['cpass']);
+    $password = mysqli_real_escape_string($conn, $_POST['newpass']);
+    $newpass = md5($password);
+    $cpassword = mysqli_real_escape_string($conn, $_POST['cpass']);
+    $cpass = md5($cpassword);
+
     if (empty($newpass) || empty($cpass)) {
         echo "Password is required";
     }

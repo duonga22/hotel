@@ -25,7 +25,8 @@ if(isset($_POST['signin'])){
           //lấy thông tin từ các form bằng phương thức POST
           $name =$_POST["fname"];
           $email =$_POST["email"];
-          $Password=$_POST["Pass"];
+          $password=$_POST["Pass"];
+          $Password = md5($password);
           $sdt=$_POST["sdt"];
           $cmnd=$_POST["cmnd"];
           $address=$_POST["address"];
@@ -123,7 +124,7 @@ function myFunction() {
                             </div>
                             
                             <div class="form-sub-w3">
-                                <input type="password" placeholder="Password" name="Pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="myInput" required>
+                                <input type="password" placeholder="Password" name="Pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="myInput" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                                 </div>
