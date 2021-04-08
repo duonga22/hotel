@@ -92,13 +92,13 @@ if (isset($_POST['add'])) {
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input type="password" placeholder="New password" name="newpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="myInput" required>
+                                <input type="password" placeholder="New password" name="newpass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="myInput" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="form-sub-w3">
-                                <input type="password" placeholder="confirm password" name="cpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="myInput" required>
+                                <input type="password" placeholder="confirm password" name="cpass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="myInput" required>
                                 <div class="icon-w3">
                                     <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                                 </div>

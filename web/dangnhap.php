@@ -9,7 +9,8 @@ include('db.php');
 error_reporting(0);
 if (isset($_POST['login'])) {
 	$name = $_POST['name'];
-	$Password = $_POST['Pass'];
+	$password=$_POST["Pass"];
+	$Password = md5($password);
 	$check_user = "SELECT * from register WHERE name ='$name' AND password='$Password'";
 	$run = mysqli_query($conn, $check_user);
 
@@ -39,7 +40,7 @@ if (isset($_POST['login'])) {
 <html lang="en">
 
 <head>
-	<title>Clean Login Form a Flat Responsive Widget Template :: w3layouts</title>
+	<title>Chào mừng bạn đến với khách sạn chúng tôi</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Clean Login Form Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
@@ -70,7 +71,7 @@ if (isset($_POST['login'])) {
 								</div>
 							</div>
 							<div class="form-sub-w3">
-								<input type="password" placeholder="Password" name="Pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="myInput" required>
+								<input type="password" placeholder="Password" name="Pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="myInput" required>
 								<div class="icon-w3">
 									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 								</div>
