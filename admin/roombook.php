@@ -156,7 +156,7 @@ if(!isset($_SESSION["user"]))
 					<div class="col-md-8 col-sm-8">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                           Booking Conformation
+                           Booking Confirmation
                         </div>
                         <div class="panel-body">
 							
@@ -514,7 +514,7 @@ if(!isset($_SESSION["user"]))
 						{
 									$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
 									
-								
+									echo "<script type='text/javascript'> alert('Booking Confirm')</script>";
 										
 										
 									 if( mysqli_query($con,$urb))
@@ -611,7 +611,7 @@ if(!isset($_SESSION["user"]))
 															$rpsql = "UPDATE `room` SET ,`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 															if(mysqli_query($con,$rpsql))
 															{
-															echo "<script type='text/javascript'> alert('Booking Confirm')</script>";
+															
 															require_once '../PHPMailer/OAuth.php';
 require_once '../PHPMailer/Exception.php';
 require_once '../PHPMailer/PHPMailer.php';

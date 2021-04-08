@@ -255,11 +255,11 @@ tr:hover .cut { opacity: 1; }
 		<header>
 			<h1>Invoice</h1>
 			<address >
-				<p>SUN RISE HOTEL,</p>
-				<p>New Kalmunani Road,<br>Battialoa,<br>Sri Lanka.</p>
+				<p>AUGUSTO HOTEL,</p>
+				<p>101b Le Huu Trac Road,<br>Son Tra,<br>Da Nang.</p>
 				<p>(+94) 65 222 44 55</p>
 			</address>
-			<span><img alt="" src="assets/img/sun.png"></span>
+			<span><img alt="" src="https://i.pinimg.com/originals/64/2f/92/642f92ac95c9157cf311ad748f35967d.jpg"></span>
 		</header>
 		<article>
 			<h1>Recipient</h1>
@@ -330,7 +330,7 @@ tr:hover .cut { opacity: 1; }
 		<aside>
 			<h1><span >Contact us</span></h1>
 			<div >
-				<p align="center">Email :- info@sunrise.com || Web :- www.sunrise.com || Phone :- +94 65 222 44 55 </p>
+				<p align="center">Email :- info@teamcute.com || Web :- www.teamcute.com || Phone :- +94 65 222 44 55 </p>
 			</div>
 		</aside>
 	</body>

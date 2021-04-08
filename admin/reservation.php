@@ -135,7 +135,7 @@ include('db.php')
                                     ?>
                                     <div class="form-group">
                                         <label>Check-In <span style="color: red"> * </span></label>
-                                        <input name="cin" type="date" min=<?php echo $today; ?> class="form-control" required>
+                                        <input name="cin" type="date" min=<?php echo $today; ?> class="form-control" onkeydown="return false" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Check-Out <span style="color: red"> * </span></label>
@@ -145,7 +145,7 @@ include('db.php')
                                             $cin = $_POST['cin'];
                                             $date = date('Y-m-d', strtotime($cin . ' + 1 days'));
                                         ?> -->
-                                        <input name="cout" type="date" min=<?php echo $date; ?> class="form-control" required>
+                                        <input name="cout" type="date" min=<?php echo $date; ?> class="form-control" onkeydown="return false" required>
                                        
                                     </div>
 

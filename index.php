@@ -323,14 +323,14 @@ include('db.php');
 			$description=$std['description'];
 			$id = $std['id'];
 
-			if($id %3 == 0){
+		
 
 			
 			
 			
 			echo '
 			
-			<div class="col-md-3">
+			<div class="col-md-4">
 		
 				<div class="card" style="width:350px">
 					<img class="card-img-top" src="admin/image/'.$image.'" alt="Card image" style="width:100%">
@@ -357,7 +357,7 @@ include('db.php');
 					
 	
 			';
-			}
+			
         }
 	
 ?>

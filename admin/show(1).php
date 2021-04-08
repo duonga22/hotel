@@ -198,7 +198,7 @@ tr:hover .cut { opacity: 1; }
 				<p>101B Lê Hữu Trác<br>Sơn Trà,<br>Đà Nẵng.</p>
 				<p>(+94) 89 222 44 55</p>
 			</address>
-			<span><img alt="" src="https://i.pinimg.com/originals/64/2f/92/642f92ac95c9157cf311ad748f35967d.jpg"></span>
+			<span><img alt="" src="images/augusto.png"></span>
 		</header>
 		<article>
 			<h1></h1>
@@ -268,7 +268,7 @@ tr:hover .cut { opacity: 1; }
 		<aside>
 			<h1><span >Contact us</span></h1>
 			<div >
-				<p align="center">Email :- info@teamcute.com || Web :- www.team.com || Phone :- +94 89 222 44 55 </p>
+				<p align="center">Email :- info@xanh.com || Web :- www.xanhise.com || Phone :- +94 89 222 44 55 </p>
 			</div>
 		</aside>
 	</body>

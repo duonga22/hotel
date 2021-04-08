@@ -72,9 +72,7 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
-                    <li>
-                        <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
-                    </li>
+                   
                     <li>
                         <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
